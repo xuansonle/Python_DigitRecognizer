@@ -16,14 +16,14 @@ def dataPrep(image):
     # Decoding
     image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
 
-    image2 = Image.fromarray(image)
-    image2.save("./data/draw_original.png")
+    #image2 = Image.fromarray(image)
+    #image2.save("./data/draw_original.png")
 
     # Resizing and reshaping to keep the ratio.
     image = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
 
-    image2 = Image.fromarray(image)
-    image2.save("./data/draw_resized.png")
+    #image2 = Image.fromarray(image)
+    #image2.save("./data/draw_resized.png")
 
     image = np.asarray(image, dtype="uint8")
     image = image.reshape(-1, 28, 28, 1).astype('float32')
