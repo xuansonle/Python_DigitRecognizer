@@ -4,6 +4,7 @@ import pickle
 import base64
 import numpy as np
 from helpfunctions import predictNumber, dataPrep
+
 #import os
 #port = int(os.environ.get('PORT', 5000))
 
