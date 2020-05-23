@@ -4,8 +4,8 @@ import pickle
 import base64
 import numpy as np
 from helpfunctions import predictNumber, dataPrep
-import os
-port = int(os.environ.get('PORT', 5000))
+#import os
+#port = int(os.environ.get('PORT', 5000))
 
 #Initialize the useless part of the base64 encoded image.
 init_Base64 = 21
@@ -45,4 +45,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port, debug=True)
+    #app.run(host='0.0.0.0', port=port, debug=True)
+    app.run()
