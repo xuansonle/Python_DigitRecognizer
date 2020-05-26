@@ -1,27 +1,46 @@
-<!DOCTYPE html>
-<html>
+{%extends 'base.html'%}
 
-<head>
-    <title>Digit Recognizer</title>
+{%block head%}
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:500" rel="stylesheet">
-    
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles_draw.css') }}">
-    <script type="text/javascript" src="{{ url_for('static', filename='draw.js') }}"></script>
-</head>
+{%endblock%}
 
-<body>
-    <h1>Results</h1>
-    <div class="results">
-        {%if prediction%}
-        <h2 style="color:red;">Looks like a {{ prediction }} ! </h2>
-        {%else%}
-         <h2 style="color:red;">Nothing to predict ! </h2>
-        {%endif%}
-        <input class="btn" type="submit" id='try-again' value="Try again" onclick="location.href = '.';">
+{%block body%}
+
+<h1 class="mb-5">Results</h1>
+<div class="results mb-5">
+    {%if prediction%}
+    <h3 class="text-success mb-5">Looks like a {{ prediction }} ! </h3>
+    {%else%}
+    <h2 class="mb-5">Nothing to predict ! </h2>
+    {%endif%}
+    <div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Digit</th>
+                    <th scope="col">Probability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k,v in predictions.items() %}
+                {% if v > 0 %}
+                {% if k == prediction %}
+                <tr>
+                    <td class="text-success">{{k}}</td>
+                    <td class="text-success">{{v}}</td>
+                </tr>
+                {%else%}
+                <tr>
+                    <td>{{k}}</td>
+                    <td>{{v}}</td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-</body>
+    <input class="btn btn-primary" type="submit" id='try-again' value="Try again" onclick="location.href = '.';">
+</div>
 
-</html>
+{%endblock%}

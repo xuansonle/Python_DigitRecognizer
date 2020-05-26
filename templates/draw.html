@@ -1,36 +1,27 @@
-<!DOCTYPE html>
-<html>
+{%extends 'base.html'%}
 
-<head>
-    <title>Digit Regcognizer</title>
+{%block head%}
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:500" rel="stylesheet">
-    
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles_draw.css') }}">
-    <script type="text/javascript" src="{{ url_for('static', filename='draw.js') }}"></script>
-</head>
+{%endblock%}
 
-<body>
+{%block body%}
 
-    <h1>Digit Regcognizer</h1>
-    <form id="myForm" action="{{ url_for('predict')}}" method="POST" enctype="multipart/form-data">
-        <div>
-            <canvas id="canvas" name="draw" width="400" height="400">
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        drawCanvas();
-                    });
-                </script>
-            </canvas>
-            <!-- Create hidden input to save the canvas data after drawing-->
-            <input type="hidden" id='url' name="url" value="">
-        </div>
-        <!-- Button save canvas info ->  input when onclick-->
-        <input class="btn" type="submit" id='predict' value="Predict" onclick="return save();">
-    </form>
+<h1 class="mb-5">Digit Regcognizer</h1>
+<form id="myForm" action="{{ url_for('predict')}}" method="POST" enctype="multipart/form-data">
+    <div class="mb-5">
+        <canvas id="canvas" name="draw" width="400" height="400">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    drawCanvas();
+                });
+            </script>
+        </canvas>
+        <!-- Create hidden input to save the canvas data after drawing-->
+        <input type="hidden" id='url' name="url" value="">
+        
+    </div>
+    <!-- Button save canvas info ->  input when onclick-->
+    <input class="btn btn-primary" type="submit" id='predict' value="Predict" onclick="return save();">
+</form>
 
-</body>
-
-</html>
+{%endblock%}
