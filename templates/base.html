@@ -4,6 +4,8 @@
 <head>
     <title>Digit Regcognizer</title>
 
+    <link rel="shortcut icon" href="">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:500" rel="stylesheet">
 
@@ -11,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles_draw.css') }}">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='/js/draw.js') }}"></script>
+    
 
     {%block head%} {%endblock%}
 </head>
@@ -21,6 +23,7 @@
     <div class="container text-center pt-5">
     {%block body%} {%endblock%}
     </div>    
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/draw.js') }}"></script>
 </body>
 
 </html>

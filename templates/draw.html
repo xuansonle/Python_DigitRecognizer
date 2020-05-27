@@ -6,9 +6,9 @@
 
 {%block body%}
 
-<h1 class="mb-5">Digit Regcognizer</h1>
+<h1 class="mb-3">Digit Regcognizer</h1>
 <form id="myForm" action="{{ url_for('predict')}}" method="POST" enctype="multipart/form-data">
-    <div class="mb-5">
+    <div>
         <canvas id="canvas" name="draw" width="400" height="400">
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -17,11 +17,11 @@
             </script>
         </canvas>
         <!-- Create hidden input to save the canvas data after drawing-->
-        <input type="hidden" id='url' name="url" value="">
-        
+        <input type="hidden" id='hidden-image' name="hidden-image" value="">
     </div>
     <!-- Button save canvas info ->  input when onclick-->
-    <input class="btn btn-primary" type="submit" id='predict' value="Predict" onclick="return save();">
+    <input class="btn btn-primary mb-1" type="submit" id='predict' value="Predict" onclick="save();">
 </form>
+
 
 {%endblock%}

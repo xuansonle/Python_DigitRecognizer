@@ -30,7 +30,7 @@ def predict():
         predictions = None
         #Preprocess the image : set the image to 28x28 shape
         #Access the image
-        draw = request.form['url']
+        draw = request.form['hidden-image']
 
         #Removing the useless part of the url.
         draw = draw[init_Base64:]
