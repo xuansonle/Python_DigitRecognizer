@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from keras.models import load_model
 from cv2 import cv2
 from PIL import Image
+import os
 
 # Load pre-trained model
 model = load_model("model.h5")
@@ -40,6 +41,13 @@ def predict():
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
             image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
+            
+            try:
+                os.remove('static/image/User_Drawing.jpg')
+            except:
+                pass
+            
+            Image.fromarray(image).save('./static/image/User_Drawing.jpg')
             
             # Resizing and reshaping to keep the ratio.
             image = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)

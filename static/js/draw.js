@@ -64,9 +64,10 @@ function redraw() {
     - Add the string to an hidden tag of the form so Flask can reach it.
 **/
 function save() {
-  console.log(drawed)
   if (drawed) {
-    var url = document.getElementById("hidden-image");
-    url.value = canvas.toDataURL();
+    var hiddenImage_Input = document.getElementById("hidden-image");
+    hiddenImage_Input.value = canvas.toDataURL();
+    // var userDrawing_Image = document.getElementById("user-drawing");
+    // userDrawing_Image.src = canvas.toDataURL();
   }
 }

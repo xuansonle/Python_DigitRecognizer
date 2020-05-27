@@ -9,6 +9,9 @@
 <h1 class="mb-5">Results</h1>
 <div class="results mb-5">
     {%if prediction%}
+
+    <!-- <img src="/static/image/User_Drawing.jpg" id="user-drawing" width="200" height="200"> -->
+
     <h3 class="text-success mb-5">Looks like a {{ prediction }} ! </h3>
     <div>
         <table class="table table-sm">
@@ -40,8 +43,8 @@
     {%else%}
     <h2 class="mb-5">Nothing to predict ! </h2>
     {%endif%}
-    <input class="btn btn-warning" type="submit" id='try-again' value="Try again" onclick="location.href = '.';">
-    
 </div>
+
+<input class="btn btn-warning" type="submit" id='try-again' value="Try again" onclick="location.href = '.';">
 
 {%endblock%}
