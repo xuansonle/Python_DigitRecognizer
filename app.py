@@ -35,20 +35,15 @@ def predict():
         
         if draw != "empty":
 
+            imageURL = draw
+
             #Removing the useless part of the url.
             draw = draw[init_Base64:]
             #Decoding
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
             image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
-            
-            try:
-                os.remove('static/image/User_Drawing.jpg')
-            except:
-                pass
-            
-            Image.fromarray(image).save('./static/image/User_Drawing.jpg')
-            
+
             # Resizing and reshaping to keep the ratio.
             image = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
             image = np.asarray(image, dtype="uint8")
@@ -61,7 +56,7 @@ def predict():
             prediction = np.argmax(predictions)
             predictions = dict(zip(list(range(0,10)),predictions))
             
-            return render_template('results.html', prediction=prediction, predictions=predictions)   
+            return render_template('results.html', prediction=prediction, predictions=predictions, imageURL=imageURL)   
         
         else: 
         
