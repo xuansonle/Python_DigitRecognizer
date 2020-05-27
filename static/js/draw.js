@@ -6,7 +6,7 @@ var clickY = new Array();
 var clickDrag = new Array();
 var paint = false;
 var curColor = "white";
-const clear_button = document.getElementById("clear");
+var drawed = false;
 
 function drawCanvas() {
   canvas = document.getElementById("canvas");
@@ -19,6 +19,7 @@ function drawCanvas() {
     paint = true;
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
     redraw();
+    drawed = true;
   });
 
   $("#canvas").mousemove(function (e) {
@@ -63,7 +64,9 @@ function redraw() {
     - Add the string to an hidden tag of the form so Flask can reach it.
 **/
 function save() {
-  var url = document.getElementById("hidden-image");
-  url.value = canvas.toDataURL();
+  console.log(drawed)
+  if (drawed) {
+    var url = document.getElementById("hidden-image");
+    url.value = canvas.toDataURL();
+  }
 }
-

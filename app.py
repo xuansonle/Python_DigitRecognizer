@@ -18,40 +18,50 @@ init_Base64 = 21
 app = flask.Flask(__name__, template_folder='templates')
 
 #First route : Render the initial drawing template
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def home():
     return render_template('draw.html')
 
 #Second route : Use our model to make prediction - render the results page.
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
-    if request.method == 'POST':
-        prediction = None
-        predictions = None
+    
+    if (request.method == 'POST'):
+                
         #Preprocess the image : set the image to 28x28 shape
         #Access the image
         draw = request.form['hidden-image']
+        
+        if draw != "empty":
 
-        #Removing the useless part of the url.
-        draw = draw[init_Base64:]
-        #Decoding
-        draw_decoded = base64.b64decode(draw)
-        image = np.asarray(bytearray(draw_decoded), dtype="uint8")
-        image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
+            #Removing the useless part of the url.
+            draw = draw[init_Base64:]
+            #Decoding
+            draw_decoded = base64.b64decode(draw)
+            image = np.asarray(bytearray(draw_decoded), dtype="uint8")
+            image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
+            
+            # Resizing and reshaping to keep the ratio.
+            image = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
+            image = np.asarray(image, dtype="uint8")
+            
+            image = image.reshape(-1, 28, 28, 1).astype('float32')
+            image /= 255.0
+            
+            # Get the prediction
+            predictions = list(map(lambda x: round(x,2), list(model.predict(image))[0]))
+            prediction = np.argmax(predictions)
+            predictions = dict(zip(list(range(0,10)),predictions))
+            
+            return render_template('results.html', prediction=prediction, predictions=predictions)   
         
-        # Resizing and reshaping to keep the ratio.
-        image = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
-        image = np.asarray(image, dtype="uint8")
+        else: 
         
-        image = image.reshape(-1, 28, 28, 1).astype('float32')
-        image /= 255.0
+            return render_template('results.html')
+    
+    else: 
         
-        # Get the prediction
-        predictions = list(map(lambda x: round(x,2), list(model.predict(image))[0]))
-        prediction = np.argmax(predictions)
-        predictions = dict(zip(list(range(0,10)),predictions))
-
-    return render_template('results.html', prediction=prediction, predictions=predictions)
+        return render_template('results.html')
 
 
 if __name__ == '__main__':

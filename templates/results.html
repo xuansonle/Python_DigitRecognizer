@@ -10,9 +10,6 @@
 <div class="results mb-5">
     {%if prediction%}
     <h3 class="text-success mb-5">Looks like a {{ prediction }} ! </h3>
-    {%else%}
-    <h2 class="mb-5">Nothing to predict ! </h2>
-    {%endif%}
     <div>
         <table class="table table-sm">
             <thead>
@@ -40,7 +37,11 @@
             </tbody>
         </table>
     </div>
+    {%else%}
+    <h2 class="mb-5">Nothing to predict ! </h2>
+    {%endif%}
     <input class="btn btn-warning" type="submit" id='try-again' value="Try again" onclick="location.href = '.';">
+    
 </div>
 
 {%endblock%}
