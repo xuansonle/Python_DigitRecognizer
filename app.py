@@ -21,7 +21,7 @@ app = flask.Flask(__name__, template_folder='templates')
 #First route : Render the initial drawing template
 @app.route('/', methods=['GET','POST'])
 def home():
-    return render_template('draw.html')
+    return render_template('home.html')
 
 #Second route : Use our model to make prediction - render the results page.
 @app.route('/predict', methods=['GET','POST'])
@@ -46,8 +46,8 @@ def predict():
 
             # Resizing and reshaping to keep the ratio.
             image = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
+
             image = np.asarray(image, dtype="uint8")
-            
             image = image.reshape(-1, 28, 28, 1).astype('float32')
             image /= 255.0
             
@@ -60,7 +60,7 @@ def predict():
         
         else: 
         
-            return render_template('results.html')
+            return render_template('home.html')
     
     else: 
         

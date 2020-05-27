@@ -70,4 +70,8 @@ function save() {
     var userDrawing_Image = document.getElementById("user-drawing");
     userDrawing_Image.src = canvas.toDataURL();
   }
+  else {
+    console.log("Hiii");
+    alert("Please draw something to continue");
+  }
 }
