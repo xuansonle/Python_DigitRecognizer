@@ -30,7 +30,7 @@ def predict():
     if (request.method == 'POST'):
                 
         #Preprocess the image : set the image to 28x28 shape
-        #Access the image
+        #Access the image from the form in home.html
         draw = request.form['hidden-image']
         
         if draw != "empty":

@@ -67,8 +67,6 @@ function save() {
   if (drawed) {
     var hiddenImage_Input = document.getElementById("hidden-image");
     hiddenImage_Input.value = canvas.toDataURL();
-    var userDrawing_Image = document.getElementById("user-drawing");
-    userDrawing_Image.src = canvas.toDataURL();
   }
   else {
     console.log("Hiii");

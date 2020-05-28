@@ -16,6 +16,7 @@
     </script>
 </canvas>
 
+<!-- Create form to send data to the server -->
 <form action="{{ url_for('predict')}}" method="POST" enctype="multipart/form-data">
     <!-- Create hidden input to save the canvas data after drawing-->
     <input type="hidden" id='hidden-image' name="hidden-image" value="empty">
