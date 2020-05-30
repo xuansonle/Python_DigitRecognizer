@@ -3,4 +3,4 @@ GUI Digit Recognizer built in Keras, using Convolutional Neural Network. The mod
 
 **Demo**
 
-<img src="image/digit.dif" width="400">
+<img src="image/digit.gif" width="400">
